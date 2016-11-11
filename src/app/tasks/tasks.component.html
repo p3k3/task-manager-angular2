@@ -5,9 +5,9 @@
 
 <md-sidenav-layout class="sidenav-layout">
   <!-- Task info -->
-  <md-sidenav #taskInfo align="end" mode="side">
-    <h3>TODO: Show task description</h3>
-    <button md-raised-button color="primary" (click)="taskInfo.close()">CLOSE</button>
+  <md-sidenav #taskInfo class="sidenav" align="end" mode="side">
+    <h3>{{taskSelected.description}}</h3>
+    <button md-raised-button color="primary" class="sidenav-close-button" (click)="taskInfo.close()">CLOSE</button>
   </md-sidenav>
 
   <!-- New task -->
@@ -19,7 +19,7 @@
 
   <!-- Tasks -->
   <app-task-list
-    (onInfo)="taskInfo.open()"
+    (onInfo)="infoTask($event)"
     (onDelete)="deleteTask($event)">
   </app-task-list>
 </md-sidenav-layout>

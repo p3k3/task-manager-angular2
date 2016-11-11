@@ -1,12 +1,3 @@
-/*
-.app-action {
-  display: inline-block;
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-}
-*/
-
 .app-action {
   position: absolute;
   right: 30px;
@@ -15,4 +6,13 @@
 
 .sidenav-layout {
   height: calc(100% - 64px);
+}
+
+.sidenav {
+  padding: 10px;
+}
+
+.sidenav-close-button {
+  display: block;
+  margin: auto;
 }

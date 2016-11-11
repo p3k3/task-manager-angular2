@@ -2,6 +2,7 @@ import { AfterViewInit, ViewChild } from '@angular/core';
 import { Component } from '@angular/core';
 import { MdSnackBar, MdSnackBarConfig } from '@angular/material';
 import { MdDialog, MdDialogConfig, MdDialogRef } from '@angular/material';
+import { MdSidenav } from '@angular/material';
 
 import { TaskListComponent } from './../task-list/task-list.component';
 import { TaskDeleteComponent } from './../task-delete/task-delete.component';
@@ -17,12 +18,15 @@ import { Task } from '../task';
   providers: [MdSnackBar]
 })
 export class TasksComponent implements AfterViewInit {
-  taskSelected: Task;
+  taskSelected: Task = new Task();
   showTaskNew: boolean = false;
   dialogRef: MdDialogRef<TaskDeleteComponent>;
 
   @ViewChild(TaskListComponent)
   private taskListComponent: TaskListComponent;
+
+  @ViewChild('taskInfo')
+  private mdSidenav: MdSidenav;
 
   ngAfterViewInit() {
   }
@@ -80,5 +84,10 @@ export class TasksComponent implements AfterViewInit {
       }
       this.dialogRef = null;
     });
+  }
+
+  infoTask(task: Task): void {
+    this.taskSelected = task;
+    this.mdSidenav.open();
   }
 }
