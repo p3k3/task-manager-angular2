@@ -6,7 +6,7 @@
 <md-sidenav-layout class="sidenav-layout">
   <!-- Task info -->
   <md-sidenav #taskInfo class="sidenav" align="end" mode="side">
-    <h3>{{taskSelected.description}}</h3>
+    <app-task-info [task]="taskSelected"></app-task-info>
     <button md-raised-button color="primary" class="sidenav-close-button" (click)="taskInfo.close()">CLOSE</button>
   </md-sidenav>
 
