@@ -2,7 +2,10 @@
   <md-card>
     <md-card-title>New task</md-card-title>
     <md-card-content>
-      <md-input class="description" placeholder="Description" #descriptionInput></md-input>
+      <md-input #descriptionInput
+        class="description" 
+        placeholder="Description"
+        (keyup.enter)="save(descriptionInput.value)"></md-input>
     </md-card-content>
     <md-card-actions align="end">
         <button md-button color="primary" (click)="save(descriptionInput.value)">SAVE</button>
