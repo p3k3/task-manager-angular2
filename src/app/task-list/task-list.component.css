@@ -1,0 +1,15 @@
+.list-item {
+  width: 100%;
+}
+
+.list-item button {
+  display: none;
+}
+
+.list-item:hover button {
+  display: inline;
+}
+
+.tasks-div {
+  padding: 20px;
+}

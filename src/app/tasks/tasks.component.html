@@ -1,0 +1,34 @@
+<!-- Toolbar -->
+<md-toolbar color="primary">
+  <span>Task Manager</span>
+</md-toolbar>
+
+<md-sidenav-layout class="sidenav-layout">
+  <!-- Task info -->
+  <md-sidenav #taskInfo align="end" mode="side">
+    <h3>TODO: Show task description</h3>
+    <button md-raised-button color="primary" (click)="taskInfo.close()">CLOSE</button>
+  </md-sidenav>
+
+  <!-- New task -->
+  <app-task-new
+    *ngIf="showTaskNew"
+    (onSave)="createdNewTask($event)"
+    (onCancel)="showTaskNewInit()">
+  </app-task-new>
+
+  <!-- Tasks -->
+  <app-task-list
+    (onInfo)="taskInfo.open()"
+    (onDelete)="deleteTask($event)">
+  </app-task-list>
+</md-sidenav-layout>
+
+<!-- Add task -->
+<span class="app-action">
+  <button md-fab
+    (click)="newTask()"
+    [disabled]="showTaskNew">
+    <md-icon class="md-24">add</md-icon>
+  </button>
+</span>

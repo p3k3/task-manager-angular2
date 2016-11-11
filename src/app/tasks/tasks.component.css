@@ -1,0 +1,18 @@
+/*
+.app-action {
+  display: inline-block;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+}
+*/
+
+.app-action {
+  position: absolute;
+  right: 30px;
+  top: 35px;
+}
+
+.sidenav-layout {
+  height: calc(100% - 64px);
+}
