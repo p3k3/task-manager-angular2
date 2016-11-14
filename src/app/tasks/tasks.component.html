@@ -17,9 +17,18 @@
     (onCancel)="showTaskNewInit()">
   </app-task-new>
 
+  <!-- Edit task -->
+  <app-task-edit
+    *ngIf="showTaskEdit"
+    [task]="taskEditing"
+    (onSave)="editedNewTask($event)"
+    (onCancel)="showTaskEditInit()">
+  </app-task-edit>
+
   <!-- Tasks -->
   <app-task-list
     (onInfo)="infoTask($event)"
+    (onEdit)="editTask($event)"
     (onDelete)="deleteTask($event)">
   </app-task-list>
 </md-sidenav-layout>

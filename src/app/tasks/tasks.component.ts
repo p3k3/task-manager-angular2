@@ -19,7 +19,10 @@ import { Task } from '../task';
 })
 export class TasksComponent implements AfterViewInit {
   taskSelected: Task = new Task();
+  taskEditing: Task = new Task();
+
   showTaskNew: boolean = false;
+  showTaskEdit: boolean = false;
   dialogRef: MdDialogRef<TaskDeleteComponent>;
 
   @ViewChild(TaskListComponent)
@@ -62,6 +65,22 @@ export class TasksComponent implements AfterViewInit {
     this.showSnackBar('\'' + task.description + '\' created!');
   }
 
+  ///////////////
+  // Info task //
+  ///////////////
+  infoTask(task: Task): void {
+    this.taskSelected = task;
+    this.mdSidenav.open();
+  }
+
+  ///////////////
+  // Edit task //
+  ///////////////
+  editTask(task: Task): void {
+    this.showTaskEdit = true;
+    //this.taskEditing = task;
+  }
+
   /////////////////
   // Delete task //
   /////////////////
@@ -84,10 +103,5 @@ export class TasksComponent implements AfterViewInit {
       }
       this.dialogRef = null;
     });
-  }
-
-  infoTask(task: Task): void {
-    this.taskSelected = task;
-    this.mdSidenav.open();
   }
 }

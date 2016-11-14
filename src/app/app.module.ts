@@ -12,6 +12,7 @@ import { TaskNewComponent } from './task-new/task-new.component';
 import { TaskListComponent } from './task-list/task-list.component';
 import { TaskDeleteComponent } from './task-delete/task-delete.component';
 import { TaskInfoComponent } from './task-info/task-info.component';
+import { TaskEditComponent } from './task-edit/task-edit.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { TaskInfoComponent } from './task-info/task-info.component';
     TaskNewComponent,
     TaskListComponent,
     TaskDeleteComponent,
-    TaskInfoComponent
+    TaskInfoComponent,
+    TaskEditComponent
   ],
   imports: [
     BrowserModule,

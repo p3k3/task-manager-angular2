@@ -1,0 +1,15 @@
+<div class="task-new-div">
+  <md-card>
+    <md-card-title>Edit task</md-card-title>
+    <md-card-content>
+      <md-input #descriptionInput
+        class="description" 
+        placeholder="Description"
+        (keyup.enter)="save(descriptionInput.value)"></md-input>
+    </md-card-content>
+    <md-card-actions align="end">
+        <button md-button color="primary" (click)="save(descriptionInput.value)">SAVE</button>
+        <button md-button color="accent" (click)="cancel()">CANCEL</button>
+   </md-card-actions>
+  </md-card>
+</div>

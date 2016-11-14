@@ -9,8 +9,9 @@ import { TaskService } from './../task.service';
   styleUrls: ['./task-list.component.css']
 })
 export class TaskListComponent implements OnInit {
-  @Output() onDelete = new EventEmitter<Task>();
   @Output() onInfo = new EventEmitter<Task>();
+  @Output() onEdit = new EventEmitter<Task>();
+  @Output() onDelete = new EventEmitter<Task>();
 
   tasks: Task[];
 
@@ -28,6 +29,10 @@ export class TaskListComponent implements OnInit {
 
   infoTask(task: Task): void {
     this.onInfo.emit(task);
+  }
+
+  editTask(task: Task): void {
+    this.onEdit.emit(task);
   }
 
   deleteTask(task: Task): void {
