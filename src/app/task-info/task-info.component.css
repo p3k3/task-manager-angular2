@@ -1,0 +1,9 @@
+.task-info-row {
+    /* height: 50px; */
+    align-items: center;
+    display: flex;
+}
+.task-info-row-avatar {
+    padding-left: 10px;
+    padding-right: 10px;
+}
