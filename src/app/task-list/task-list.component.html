@@ -2,6 +2,22 @@
   <md-card>
     <md-card-title>Tasks</md-card-title>
     <md-card-content>
+      <app-task-list-item
+        *ngFor="let task of tasks; let isLast=last"
+        [task]="task"
+        [isLast]="isLast"
+        (onInfo)="infoTask($event)"
+        (onEdit)="editTask($event)"
+        (onDelete)="deleteTask($event)">
+      </app-task-list-item>
+    </md-card-content>
+  </md-card>
+</div>
+
+<div class="tasks-div">
+  <md-card>
+    <md-card-title>Tasks (old)</md-card-title>
+    <md-card-content>
       <md-nav-list>
         <md-list-item class="list-item" *ngFor="let task of tasks">
           <a md-line (click)="infoTask(task)">{{task.description}}</a>

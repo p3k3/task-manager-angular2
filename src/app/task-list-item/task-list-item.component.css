@@ -1,0 +1,20 @@
+.task-list-item {
+    height: 40px;
+    align-items: center;
+    display: flex;
+}
+
+.separator {
+    border-bottom-color: #ccc;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+}
+
+.task-list-item-content {
+    float: left;
+    width: 100%;
+}
+
+.task-list-item-menu {
+    float: right;
+}

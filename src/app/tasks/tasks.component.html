@@ -1,36 +1,49 @@
-<!-- Toolbar -->
-<md-toolbar color="primary">
-  <span>Task Manager</span>
-</md-toolbar>
+<md-sidenav-layout class="main-sidenav-layout">
+  <!-- Toolbar -->
+  <md-toolbar color="primary">
+    <button class="app-icon-button"
+      (click)="mainSidenav.toggle()">
+      <md-icon class="app-toolbar-menu">inbox</md-icon>
+    </button>
+    <span>
+      Inbox
+    </span>
+  </md-toolbar>
 
-<md-sidenav-layout class="sidenav-layout">
-  <!-- Task info -->
-  <md-sidenav #taskInfo class="sidenav" align="end" mode="side">
-    <app-task-info [task]="taskSelected"></app-task-info>
-    <button md-raised-button color="primary" class="sidenav-close-button" (click)="taskInfo.close()">CLOSE</button>
+  <!-- Menu -->
+  <md-sidenav align="start" #mainSidenav>
+      <app-menu></app-menu>
   </md-sidenav>
 
-  <!-- New task -->
-  <app-task-new
-    *ngIf="showTaskNew"
-    (onSave)="createdNewTask($event)"
-    (onCancel)="showTaskNewInit()">
-  </app-task-new>
+  <md-sidenav-layout class="sidenav-layout">
+    <!-- Task info -->
+    <md-sidenav #taskInfo class="sidenav" align="end" mode="side">
+      <app-task-info [task]="taskSelected"></app-task-info>
+      <button md-raised-button color="primary" class="sidenav-close-button" (click)="taskInfo.close()">CLOSE</button>
+    </md-sidenav>
 
-  <!-- Edit task -->
-  <app-task-edit
-    *ngIf="showTaskEdit"
-    [task]="taskEditing"
-    (onSave)="editedNewTask($event)"
-    (onCancel)="showTaskEditInit()">
-  </app-task-edit>
+    <!-- New task -->
+    <app-task-new
+      *ngIf="showTaskNew"
+      (onSave)="createdNewTask($event)"
+      (onCancel)="showTaskNewInit()">
+    </app-task-new>
 
-  <!-- Tasks -->
-  <app-task-list
-    (onInfo)="infoTask($event)"
-    (onEdit)="editTask($event)"
-    (onDelete)="deleteTask($event)">
-  </app-task-list>
+    <!-- Edit task -->
+    <app-task-edit
+      *ngIf="showTaskEdit"
+      [task]="taskEditing"
+      (onSave)="editedNewTask($event)"
+      (onCancel)="showTaskEditInit()">
+    </app-task-edit>
+
+    <!-- Tasks -->
+    <app-task-list
+      (onInfo)="infoTask($event)"
+      (onEdit)="editTask($event)"
+      (onDelete)="deleteTask($event)">
+    </app-task-list>
+  </md-sidenav-layout>
 </md-sidenav-layout>
 
 <!-- Add task -->
