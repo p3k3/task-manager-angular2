@@ -2,11 +2,12 @@
   <div class="task-list-item-content">
     <md-checkbox>{{task.description}}</md-checkbox>
   </div>
+  
   <div class="task-list-item-menu">
+    <!-- Menu -->
     <button md-icon-button [md-menu-trigger-for]="menu">
       <md-icon>more_vert</md-icon>
     </button>
-
     <md-menu x-position="before" #menu="mdMenu">
       <button md-menu-item (click)="info()">
         <md-icon>info</md-icon>

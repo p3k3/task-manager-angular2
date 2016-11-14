@@ -3,7 +3,7 @@
   <md-toolbar color="primary">
     <button class="app-icon-button"
       (click)="mainSidenav.toggle()">
-      <md-icon class="app-toolbar-menu">menu</md-icon>
+      <md-icon class="app-toolbar-menu">playlist_add_check</md-icon>
     </button>
     <span>
       Task manager
@@ -15,9 +15,9 @@
       <app-menu></app-menu>
   </md-sidenav>
 
-  <md-sidenav-layout class="sidenav-layout">
-    <md-tab-group>
-      <md-tab label="Inbox">
+  <md-tab-group class="main-tab-group">
+    <md-tab label="Inbox">
+      <md-sidenav-layout class="sidenav-layout">
         <!-- Task info -->
         <md-sidenav #taskInfo class="sidenav" align="end" mode="side">
           <app-task-info [task]="taskSelected"></app-task-info>
@@ -45,22 +45,22 @@
           (onEdit)="editTask($event)"
           (onDelete)="deleteTask($event)">
         </app-task-list>
-      </md-tab>
-      <md-tab label="Next">
-      </md-tab>
-      <md-tab label="Waiting">
-      </md-tab>
-      <md-tab label="Someday">
-      </md-tab>
-    </md-tab-group>
-  </md-sidenav-layout>
 
-  <!-- Add task -->
-  <span class="app-action">
-    <button md-fab
-      (click)="newTask()"
-      [disabled]="showTaskNew">
-      <md-icon class="md-24">add</md-icon>
-    </button>
-  </span>
+        <!-- Add task -->
+        <span class="app-action">
+          <button md-fab
+            (click)="newTask()"
+            [disabled]="showTaskNew">
+            <md-icon class="md-24">add</md-icon>
+          </button>
+        </span>
+      </md-sidenav-layout>
+    </md-tab>
+    <md-tab label="Next">
+    </md-tab>
+    <md-tab label="Waiting">
+    </md-tab>
+    <md-tab label="Someday">
+    </md-tab>
+  </md-tab-group>
 </md-sidenav-layout>

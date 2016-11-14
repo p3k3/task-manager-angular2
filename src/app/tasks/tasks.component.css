@@ -1,11 +1,20 @@
 .app-action {
+  /*
   position: absolute;
   right: 30px;
   top: 35px;
+  */
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
 }
 
-.sidenav-layout {
+.main-tab-group {
   height: calc(100% - 64px);
+}
+
+.sidenav-layout, .main-sidenav-layout {
+  height: 100%;
 }
 
 .sidenav {
@@ -15,10 +24,6 @@
 .sidenav-close-button {
   display: block;
   margin: auto;
-}
-
-.main-sidenav-layout {
-  height: 100%
 }
 
 .app-icon-button {

@@ -14,6 +14,6 @@ html {
     height: 100%;
 }
 
-h1, h2, h3, p {
+h1, h2, h3, p, .app-root {
     font-family: Roboto, "Helvetica Neue", sans-serif;
 }
