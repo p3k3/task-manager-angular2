@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ViewChild, AfterContentInit } from '@angular/core';
 import { MdInput } from '@angular/material';
 
 import { TaskService } from './../task.service';
@@ -9,7 +9,7 @@ import { Task } from './../task';
   templateUrl: './task-edit.component.html',
   styleUrls: ['./task-edit.component.css']
 })
-export class TaskEditComponent implements AfterViewInit {
+export class TaskEditComponent implements AfterContentInit {
   @Input() task: Task;
 
   @Output() onCancel = new EventEmitter<boolean>();
@@ -21,9 +21,8 @@ export class TaskEditComponent implements AfterViewInit {
     private taskService: TaskService
   ) { }
 
-  ngAfterViewInit() {
-    // TODO: Falla con @angular/material 2.0.0-alpha.10
-    //this.descriptionInput.value = this.task.description;
+  ngAfterContentInit() {
+    this.descriptionInput.value = this.task.description;
   }
 
   save(description: string): void {

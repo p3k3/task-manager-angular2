@@ -76,9 +76,13 @@ export class TasksComponent implements AfterViewInit {
   ///////////////
   // Edit task //
   ///////////////
+  showTaskEditInit(): void {
+    this.showTaskEdit = false;
+  }
+
   editTask(task: Task): void {
+    this.taskEditing = task;
     this.showTaskEdit = true;
-    //this.taskEditing = task;
   }
 
   /////////////////
