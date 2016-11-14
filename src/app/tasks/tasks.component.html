@@ -44,13 +44,13 @@
       (onDelete)="deleteTask($event)">
     </app-task-list>
   </md-sidenav-layout>
-</md-sidenav-layout>
 
-<!-- Add task -->
-<span class="app-action">
-  <button md-fab
-    (click)="newTask()"
-    [disabled]="showTaskNew">
-    <md-icon class="md-24">add</md-icon>
-  </button>
-</span>
+  <!-- Add task -->
+  <span class="app-action">
+    <button md-fab
+      (click)="newTask()"
+      [disabled]="showTaskNew">
+      <md-icon class="md-24">add</md-icon>
+    </button>
+  </span>
+</md-sidenav-layout>
