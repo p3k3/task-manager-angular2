@@ -26,7 +26,9 @@ export class TaskEditComponent implements AfterContentInit {
   }
 
   save(description: string): void {
-    this.taskService.create(description).then((task) => {
+    this.task.description = description;
+
+    this.taskService.update(this.task).then((task) => {
       this.onSave.emit(task);
       this.cancel();
     });

@@ -29,6 +29,15 @@ export class TaskService {
       .catch(this.handleError);
   }
 
+  update(task: Task): Promise<Task> {
+    const url = this.apiURL + '/tasks/' + task.id;
+    return this.http
+      .put(url, JSON.stringify(task), {headers: this.headers})
+      .toPromise()
+      .then(() => task)
+      .catch(this.handleError);
+  }
+
   delete (id: number): Promise<void> {
     const url = this.apiURL + '/tasks/' + id;
     return this.http.delete(url)

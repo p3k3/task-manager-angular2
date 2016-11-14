@@ -85,6 +85,14 @@ export class TasksComponent implements AfterViewInit {
     this.showTaskEdit = true;
   }
 
+  editedNewTask(task: Task): void {
+    // Refresco la lista
+    this.taskListComponent.getTasks();
+
+    // Muestro el mensaje
+    this.showSnackBar('\'' + task.description + '\' edited!');
+  }
+
   /////////////////
   // Delete task //
   /////////////////
