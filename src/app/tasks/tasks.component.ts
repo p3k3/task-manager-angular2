@@ -4,6 +4,7 @@ import { MdSnackBar, MdSnackBarConfig } from '@angular/material';
 import { MdDialog, MdDialogConfig, MdDialogRef } from '@angular/material';
 import { MdSidenav } from '@angular/material';
 
+import { TaskNewComponent } from './../task-new/task-new.component';
 import { TaskListComponent } from './../task-list/task-list.component';
 import { TaskDeleteComponent } from './../task-delete/task-delete.component';
 
@@ -28,6 +29,8 @@ export class TasksComponent implements AfterViewInit {
   @ViewChild(TaskListComponent)
   private taskListComponent: TaskListComponent;
 
+  @ViewChild('taskNewComponent') taskNewComponent: TaskNewComponent;
+
   @ViewChild('taskInfo')
   private mdSidenav: MdSidenav;
 
@@ -43,7 +46,7 @@ export class TasksComponent implements AfterViewInit {
   showSnackBar(message: string): void {
     let config = new MdSnackBarConfig();
     let snackBarRef = this.snackBar.open(message, null, config);
-    setTimeout(snackBarRef.dismiss.bind(snackBarRef), 2000);
+    setTimeout(snackBarRef.dismiss.bind(snackBarRef), 5000);
   }
 
   //////////////
@@ -55,6 +58,9 @@ export class TasksComponent implements AfterViewInit {
 
   newTask(): void {
     this.showTaskNew = true;
+    setTimeout(() => {
+      this.taskNewComponent.focus();
+    }, 500);
   }
 
   createdNewTask(task: Task): void {
@@ -105,7 +111,7 @@ export class TasksComponent implements AfterViewInit {
     this.dialogRef.afterClosed().subscribe(result => {
       if (result) {
         // Eliminar tarea
-        this.taskService.delete(task.id).then(() => {
+        this.taskService.delete(task._id).then(() => {
           // Refresco la lista
           this.taskListComponent.getTasks();
 

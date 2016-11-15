@@ -7,7 +7,8 @@ import { Task } from './task';
 
 @Injectable()
 export class TaskService {
-  private apiURL = 'http://localhost:3000'; // URL to web api
+  //private apiURL = 'http://localhost:3000'; // URL to web api
+  private apiURL = 'http://localhost:3000/api'; // URL to web api
   private headers = new Headers({'Content-Type': 'application/json'});
 
   constructor(
@@ -30,7 +31,7 @@ export class TaskService {
   }
 
   update(task: Task): Promise<Task> {
-    const url = this.apiURL + '/tasks/' + task.id;
+    const url = this.apiURL + '/tasks/' + task._id;
     return this.http
       .put(url, JSON.stringify(task), {headers: this.headers})
       .toPromise()
@@ -38,7 +39,7 @@ export class TaskService {
       .catch(this.handleError);
   }
 
-  delete (id: number): Promise<void> {
+  delete (id: string): Promise<void> {
     const url = this.apiURL + '/tasks/' + id;
     return this.http.delete(url)
     .toPromise()

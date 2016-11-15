@@ -25,7 +25,7 @@
         </md-sidenav>
 
         <!-- New task -->
-        <app-task-new
+        <app-task-new #taskNewComponent
           *ngIf="showTaskNew"
           (onSave)="createdNewTask($event)"
           (onCancel)="showTaskNewInit()">
