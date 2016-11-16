@@ -1,66 +1,41 @@
-<md-sidenav-layout class="main-sidenav-layout">
-  <!-- Toolbar -->
-  <md-toolbar color="primary">
-    <button class="app-icon-button"
-      (click)="mainSidenav.toggle()">
-      <md-icon class="app-toolbar-menu">playlist_add_check</md-icon>
-    </button>
-    <span>
-      Task manager
-    </span>
-  </md-toolbar>
-
-  <!-- Menu -->
-  <md-sidenav align="start" #mainSidenav>
-      <app-menu></app-menu>
+<md-sidenav-layout class="sidenav-layout">
+  <!-- Task info -->
+  <md-sidenav #taskInfo class="sidenav" align="end" mode="side">
+    <app-task-info [task]="taskSelected"></app-task-info>
+    <button md-raised-button color="primary" class="sidenav-close-button" (click)="taskInfo.close()">CLOSE</button>
   </md-sidenav>
 
-  <md-tab-group class="main-tab-group">
-    <md-tab label="Inbox">
-      <md-sidenav-layout class="sidenav-layout">
-        <!-- Task info -->
-        <md-sidenav #taskInfo class="sidenav" align="end" mode="side">
-          <app-task-info [task]="taskSelected"></app-task-info>
-          <button md-raised-button color="primary" class="sidenav-close-button" (click)="taskInfo.close()">CLOSE</button>
-        </md-sidenav>
+  <!-- New task -->
+  <app-task-new
+    #taskNewComponent
+    *ngIf="showTaskNew"
+    (onSave)="create($event)"
+    (onCancel)="showTaskNewInit()">
+  </app-task-new>
 
-        <!-- New task -->
-        <app-task-new #taskNewComponent
-          *ngIf="showTaskNew"
-          (onSave)="createdNewTask($event)"
-          (onCancel)="showTaskNewInit()">
-        </app-task-new>
+  <!-- Edit task -->
+  <app-task-edit
+    *ngIf="showTaskEdit"
+    [task]="taskEditing"
+    (onSave)="editedNewTask($event)"
+    (onCancel)="showTaskEditInit()">
+  </app-task-edit>
 
-        <!-- Edit task -->
-        <app-task-edit
-          *ngIf="showTaskEdit"
-          [task]="taskEditing"
-          (onSave)="editedNewTask($event)"
-          (onCancel)="showTaskEditInit()">
-        </app-task-edit>
+  <!-- Tasks -->
+  <app-task-list
+    [state]="state"
+    [showTitle]="showListTitle"
+    (onInfo)="infoTask($event)"
+    (onEdit)="editTask($event)"
+    (onDelete)="deleteTask($event)">
+  </app-task-list>
 
-        <!-- Tasks -->
-        <app-task-list
-          (onInfo)="infoTask($event)"
-          (onEdit)="editTask($event)"
-          (onDelete)="deleteTask($event)">
-        </app-task-list>
-
-        <!-- Add task -->
-        <span class="app-action">
-          <button md-fab
-            (click)="newTask()"
-            [disabled]="showTaskNew">
-            <md-icon class="md-24">add</md-icon>
-          </button>
-        </span>
-      </md-sidenav-layout>
-    </md-tab>
-    <md-tab label="Next">
-    </md-tab>
-    <md-tab label="Waiting">
-    </md-tab>
-    <md-tab label="Someday">
-    </md-tab>
-  </md-tab-group>
+  <!-- Add task -->
+  <span class="app-action">
+    <button md-fab md-tooltip="New task" tooltip-position="above"
+      (click)="newTask()"
+      [disabled]="showTaskNew">
+      <md-icon class="md-24">add</md-icon>
+    </button>
+  </span>
 </md-sidenav-layout>

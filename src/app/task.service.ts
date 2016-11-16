@@ -7,7 +7,6 @@ import { Task } from './task';
 
 @Injectable()
 export class TaskService {
-  //private apiURL = 'http://localhost:3000'; // URL to web api
   private apiURL = 'http://localhost:3000/api'; // URL to web api
   private headers = new Headers({'Content-Type': 'application/json'});
 
@@ -15,23 +14,28 @@ export class TaskService {
     private http: Http
   ) { }
 
-  getTasks(): Promise<Task[]> {
-    return this.http.get(this.apiURL + '/tasks')
+  getTasks(state?: string): Promise<Task[]> {
+    let url = this.apiURL + '/tasks';
+    if (state) {
+      url += '?state=' + state;
+    }
+
+    return this.http.get(url)
       .toPromise()
       .then(response => response.json() as Task[])
       .catch(this.handleError);
   }
 
-  create(description: string): Promise<Task> {
+  create(description: string, state: string): Promise<Task> {
     return this.http
-      .post(this.apiURL + '/tasks', JSON.stringify({description: description}), {headers: this.headers})
+      .post(this.apiURL + '/task', JSON.stringify({description: description, state: state}), {headers: this.headers})
       .toPromise()
       .then(res => res.json())
       .catch(this.handleError);
   }
 
   update(task: Task): Promise<Task> {
-    const url = this.apiURL + '/tasks/' + task._id;
+    const url = this.apiURL + '/task/' + task._id;
     return this.http
       .put(url, JSON.stringify(task), {headers: this.headers})
       .toPromise()
@@ -40,7 +44,7 @@ export class TaskService {
   }
 
   delete (id: string): Promise<void> {
-    const url = this.apiURL + '/tasks/' + id;
+    const url = this.apiURL + '/task/' + id;
     return this.http.delete(url)
     .toPromise()
     .then(() => null)

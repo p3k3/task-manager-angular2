@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 import { Task } from './../task';
 import { TaskService } from './../task.service';
@@ -9,6 +9,9 @@ import { TaskService } from './../task.service';
   styleUrls: ['./task-list.component.css']
 })
 export class TaskListComponent implements OnInit {
+  @Input() state: string;
+  @Input() showTitle: boolean;
+
   @Output() onInfo = new EventEmitter<Task>();
   @Output() onEdit = new EventEmitter<Task>();
   @Output() onDelete = new EventEmitter<Task>();
@@ -24,7 +27,7 @@ export class TaskListComponent implements OnInit {
   }
 
   getTasks(): void {
-    this.taskService.getTasks().then(tasks => this.tasks = tasks);
+    this.taskService.getTasks(this.state).then(tasks => this.tasks = tasks);
   }
 
   infoTask(task: Task): void {

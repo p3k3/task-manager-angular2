@@ -1,0 +1,14 @@
+<md-tab-group class="main-tab-group">
+  <md-tab label="Inbox">
+    <app-tasks [state]="'inbox'"></app-tasks>
+  </md-tab>
+  <md-tab label="Next">
+    <app-tasks [state]="'next'"></app-tasks>
+  </md-tab>
+  <md-tab label="Waiting">
+    <app-tasks [state]="'waiting'"></app-tasks>
+  </md-tab>
+  <md-tab label="Someday">
+    <app-tasks [state]="'someday'"></app-tasks>
+  </md-tab>
+</md-tab-group>

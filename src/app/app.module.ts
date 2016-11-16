@@ -15,6 +15,7 @@ import { TaskInfoComponent } from './task-info/task-info.component';
 import { TaskEditComponent } from './task-edit/task-edit.component';
 import { MenuComponent } from './menu/menu.component';
 import { TaskListItemComponent } from './task-list-item/task-list-item.component';
+import { TasksGroupComponent } from './tasks-group/tasks-group.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { TaskListItemComponent } from './task-list-item/task-list-item.component
     TaskInfoComponent,
     TaskEditComponent,
     MenuComponent,
-    TaskListItemComponent
+    TaskListItemComponent,
+    TasksGroupComponent
   ],
   imports: [
     BrowserModule,

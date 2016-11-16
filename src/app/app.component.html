@@ -1,1 +1,24 @@
-<router-outlet></router-outlet>
+<md-sidenav-layout class="main-sidenav-layout">
+    <!-- Toolbar -->
+    <md-toolbar color="primary">
+    <button class="app-icon-button"
+        (click)="mainSidenav.toggle()">
+        <md-icon class="app-toolbar-menu">playlist_add_check</md-icon>
+    </button>
+    <span>
+        Task manager
+    </span>
+    </md-toolbar>
+
+    <!-- Menu -->
+    <md-sidenav align="start" #mainSidenav>
+        <app-menu
+            #appMenu
+            (click)="closeMenu($event)">
+        </app-menu>
+    </md-sidenav>
+
+    <!-- Webs -->
+    <router-outlet></router-outlet>
+
+</md-sidenav-layout>

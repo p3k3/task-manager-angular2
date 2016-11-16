@@ -1,5 +1,5 @@
-import { AfterViewInit, ViewChild } from '@angular/core';
-import { Component } from '@angular/core';
+import { Component, OnInit, ViewChild, Input } from '@angular/core';
+import { ActivatedRoute, Params } from '@angular/router';
 import { MdSnackBar, MdSnackBarConfig } from '@angular/material';
 import { MdDialog, MdDialogConfig, MdDialogRef } from '@angular/material';
 import { MdSidenav } from '@angular/material';
@@ -18,7 +18,11 @@ import { Task } from '../task';
   styleUrls: ['./tasks.component.css'],
   providers: [MdSnackBar]
 })
-export class TasksComponent implements AfterViewInit {
+
+export class TasksComponent implements OnInit {
+  @Input() state: string;
+  showListTitle: boolean;
+
   taskSelected: Task = new Task();
   taskEditing: Task = new Task();
 
@@ -26,22 +30,27 @@ export class TasksComponent implements AfterViewInit {
   showTaskEdit: boolean = false;
   dialogRef: MdDialogRef<TaskDeleteComponent>;
 
-  @ViewChild(TaskListComponent)
-  private taskListComponent: TaskListComponent;
-
+  @ViewChild(TaskListComponent) private taskListComponent: TaskListComponent;
   @ViewChild('taskNewComponent') taskNewComponent: TaskNewComponent;
-
-  @ViewChild('taskInfo')
-  private mdSidenav: MdSidenav;
-
-  ngAfterViewInit() {
-  }
+  @ViewChild('taskInfo') private mdSidenav: MdSidenav;
 
   constructor(
     private snackBar: MdSnackBar,
     private dialog: MdDialog,
-    private taskService: TaskService
-  ) {}
+    private taskService: TaskService,
+    private route: ActivatedRoute
+  ) { }
+
+  ngOnInit() {
+    this.showListTitle = false;
+
+    if (!this.state) {
+      this.state = this.route.snapshot.data['state'];
+      if (this.state) {
+        this.showListTitle = true;
+      }
+    }
+  }
 
   showSnackBar(message: string): void {
     let config = new MdSnackBarConfig();
@@ -63,12 +72,14 @@ export class TasksComponent implements AfterViewInit {
     }, 500);
   }
 
-  createdNewTask(task: Task): void {
-    // Refresco la lista
-    this.taskListComponent.getTasks();
+  create(task: Task) {
+    this.taskService.create(task.description, this.state).then((newTask) => {
+      // Refresco la lista
+      this.taskListComponent.getTasks();
 
-    // Muestro el mensaje
-    this.showSnackBar('\'' + task.description + '\' created!');
+      // Muestro el mensaje
+      this.showSnackBar('\'' + newTask.description + '\' created!');
+    });
   }
 
   ///////////////

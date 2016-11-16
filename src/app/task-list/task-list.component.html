@@ -1,5 +1,8 @@
 <div class="tasks-div">
   <md-card>
+    <md-card-title *ngIf="showTitle">
+      {{state | uppercase}}
+    </md-card-title>
     <md-card-content>
       <app-task-list-item
         *ngFor="let task of tasks; let isLast=last"

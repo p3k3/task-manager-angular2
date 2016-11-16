@@ -5,10 +5,12 @@
       <md-input #descriptionInput
         class="description" 
         placeholder="Description"
-        (keyup.enter)="save(descriptionInput.value)"></md-input>
+        (keyup.enter)="save()"
+        (keyup.escape)="cancel()">
+      </md-input>
     </md-card-content>
     <md-card-actions align="end">
-        <button md-button color="primary" (click)="save(descriptionInput.value)">SAVE</button>
+        <button md-button color="primary" (click)="save()">SAVE</button>
         <button md-button color="accent" (click)="cancel()">CANCEL</button>
    </md-card-actions>
   </md-card>

@@ -1,15 +1,25 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.css']
 })
-export class MenuComponent implements OnInit {
+export class MenuComponent {
+  @Output() onClick = new EventEmitter<boolean>();
 
-  constructor() { }
+  constructor(
+    private router: Router
+  ) { }
 
-  ngOnInit() {
+  click(state: string) {
+    if (state) {
+      this.router.navigate(['/tasks/' + state]);
+    } else {
+      this.router.navigate(['/tasks']);
+    }
+
+    this.onClick.emit(true);
   }
-
 }
