@@ -1,4 +1,4 @@
-<md-sidenav-layout class="sidenav-layout">
+<md-sidenav-layout class="sidenav-layout" [class.sidenav-layout-full]="!showListTitle">
   <!-- Task info -->
   <md-sidenav #taskInfo class="sidenav" align="end" mode="side">
     <app-task-info [task]="taskSelected"></app-task-info>

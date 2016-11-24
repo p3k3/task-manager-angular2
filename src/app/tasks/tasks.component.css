@@ -1,4 +1,8 @@
 .sidenav-layout {
+  height: calc(100% - 64px);
+}
+
+.sidenav-layout-full {
   height: 100%;
 }
 
