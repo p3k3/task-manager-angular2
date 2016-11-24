@@ -31,7 +31,7 @@ export class TaskService {
   create(description: string, state: string): Promise<Task> {
     return this.http
       .post(this.apiURL + '/tasks', JSON.stringify(
-          {description: description, createDate: new Date(), state: state} // TODO: La fecha de creación que lo añada el backend.
+          {description: description, state: state}
         ), {headers: this.headers})
       .toPromise()
       .then(res => res.json())
