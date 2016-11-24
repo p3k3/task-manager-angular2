@@ -7,7 +7,7 @@ import { Task } from './task';
 
 @Injectable()
 export class TaskService {
-  private apiURL = 'http://localhost:3000/api'; // URL to web api
+  private apiURL = 'http://localhost:3000'; // URL to web api
   private headers = new Headers({'Content-Type': 'application/json'});
 
   constructor(
@@ -16,9 +16,11 @@ export class TaskService {
 
   getTasks(state?: string): Promise<Task[]> {
     let url = this.apiURL + '/tasks';
+    /* TODO:
     if (state) {
       url += '?state=' + state;
     }
+    */
 
     return this.http.get(url)
       .toPromise()
@@ -28,7 +30,9 @@ export class TaskService {
 
   create(description: string, state: string): Promise<Task> {
     return this.http
-      .post(this.apiURL + '/task', JSON.stringify({description: description, state: state}), {headers: this.headers})
+      .post(this.apiURL + '/tasks', JSON.stringify(
+          {description: description, createDate: new Date(), state: state} // TODO: La fecha de creación que lo añada el backend.
+        ), {headers: this.headers})
       .toPromise()
       .then(res => res.json())
       .catch(this.handleError);
