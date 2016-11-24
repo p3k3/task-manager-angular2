@@ -1,7 +1,6 @@
 import { Component, Output, EventEmitter, ViewChild } from '@angular/core';
 import { MdInput } from '@angular/material';
 
-/* import { TaskService } from './../task.service'; */
 import { Task } from './../task';
 
 @Component({
@@ -15,20 +14,11 @@ export class TaskNewComponent {
 
   @ViewChild('descriptionInput') descriptionInput: MdInput;
 
-  constructor(
-    /* private taskService: TaskService */
-  ) { }
+  constructor() { }
 
   save(): void {
-    /*
-    this.taskService.create(this.descriptionInput.value).then((task) => {
-      this.onSave.emit(task);
-      this.cancel();
-    });
-    */
     let task: Task = new Task();
     task.description = this.descriptionInput.value;
-    console.log('description = ' + task.description);
     this.onSave.emit(task);
     this.cancel();
   }
