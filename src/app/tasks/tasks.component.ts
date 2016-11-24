@@ -69,7 +69,7 @@ export class TasksComponent implements OnInit {
     this.showTaskNew = true;
     setTimeout(() => {
       this.taskNewComponent.focus();
-    }, 500);
+    }, 50);
   }
 
   create(task: Task) {
