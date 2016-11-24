@@ -16,11 +16,9 @@ export class TaskService {
 
   getTasks(state?: string): Promise<Task[]> {
     let url = this.apiURL + '/tasks';
-    /* TODO:
     if (state) {
       url += '?state=' + state;
     }
-    */
 
     return this.http.get(url)
       .toPromise()
